@@ -1,6 +1,7 @@
 package com.example.saurabhomer.bornbhukkad;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.saurabhomer.bornbhukkad.Model.User;
+import com.example.saurabhomer.bornbhukkad.common.Common;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,6 +57,12 @@ public class SignIn extends AppCompatActivity {
                             mDialog.dismiss();
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
+                                Intent homeIntent = new Intent(SignIn.this,Home.class);
+                                Common.CurrentUser = user;
+                                startActivity(homeIntent);
+                                finish();
+
+
                                 Toast.makeText(SignIn.this, "SignIn Sucessfully", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(SignIn.this, "SignIn Failed", Toast.LENGTH_SHORT).show();
