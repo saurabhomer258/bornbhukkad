@@ -43,7 +43,7 @@ public class FoodDetail extends AppCompatActivity {
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Database(getBaseContext()).addTOCard(new Order(
+                new Database(getBaseContext()).addToCard(new Order(
                         foodId,
                         currentFood.getName(),
                         numberButton.getNumber(),
@@ -65,7 +65,7 @@ public class FoodDetail extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
         //get food id from intent
         if(getIntent()!=null)
-            foodId= getIntent().getStringExtra("FoodId");
+            foodId= getIntent().getStringExtra("foodId");
         if(!foodId.isEmpty())
         {
             getDetailFood(foodId);
@@ -80,11 +80,11 @@ public class FoodDetail extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                  currentFood= dataSnapshot.getValue(Food.class);
                  //set imag
-                Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
-                collapsingToolbarLayout.setTitle(currentFood.getName());
-                food_price.setText(currentFood.getPrice());
-                food_name.setText(currentFood.getName());
-                food_description.setText(currentFood.getDescription());
+//                Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
+//                collapsingToolbarLayout.setTitle(currentFood.getName());
+//                food_price.setText(currentFood.getPrice());
+//                food_name.setText(currentFood.getName());
+//                food_description.setText(currentFood.getDescription());
 
             }
 

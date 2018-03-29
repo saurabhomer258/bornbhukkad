@@ -31,6 +31,7 @@ import info.hoang8f.widget.FButton;
 public class Cart extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+
     FirebaseDatabase database;
     DatabaseReference requests;
 
@@ -42,6 +43,7 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
         //firebase
         database =FirebaseDatabase.getInstance();
         requests=database.getReference("Requests");
@@ -85,12 +87,10 @@ public class Cart extends AppCompatActivity {
                         edtAddress.getText().toString(),
                         txtTotalPrice.getText().toString(),
                         cart
-
                 );
                 // Submit to firebase
                 //we will using system.CurrentMill to key
                 requests.child(String.valueOf(System.currentTimeMillis())).setValue(request);
-
                 // delete  Cart
                 new Database(getBaseContext()).cleanCart();
                 Toast.makeText(Cart.this, "Thank you , order Place", Toast.LENGTH_SHORT).show();
@@ -110,7 +110,7 @@ public class Cart extends AppCompatActivity {
         cart =new Database(this).getcarts();
         adapter =new CartAdapter(cart,this);
         recyclerView.setAdapter(adapter);
-        //calculate totak
+        //calculate total
         int total=0;
         for(Order order:cart)
             total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuality()));

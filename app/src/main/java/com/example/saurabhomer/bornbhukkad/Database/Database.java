@@ -30,6 +30,7 @@ public class Database extends SQLiteAssetHelper {
         String sqlTable = "OrderDetail";
         qb.setTables(sqlTable);
         Cursor c =qb.query(db,sqlSelect,null,null,null,null,null);
+
         final List<Order> result=new ArrayList<>();
         if(c.moveToFirst())
         {
@@ -44,7 +45,7 @@ public class Database extends SQLiteAssetHelper {
         }
         return  result;
     }
-    public void addTOCard(Order order)
+    public void addToCard(Order order)
     {
         SQLiteDatabase db =getReadableDatabase();
         String query =String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
@@ -57,6 +58,5 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db =getReadableDatabase();
         String query =String.format("DELETE FROM OrderDetail");
         db.execSQL(query);
-
     }
 }

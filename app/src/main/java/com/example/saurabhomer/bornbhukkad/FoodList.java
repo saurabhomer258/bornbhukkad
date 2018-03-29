@@ -1,5 +1,4 @@
 package com.example.saurabhomer.bornbhukkad;
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +25,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class FoodList extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -201,5 +199,5 @@ public class FoodList extends AppCompatActivity {
         
         recyclerView.setAdapter(adapter);
     }
-    
+
 }

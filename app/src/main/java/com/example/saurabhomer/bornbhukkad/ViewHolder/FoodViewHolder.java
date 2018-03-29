@@ -15,6 +15,7 @@ import com.example.saurabhomer.bornbhukkad.R;
 public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView food_name;
     public ImageView food_image;
+
     private ItemClickListerner itemClickListerner;
 
 
@@ -28,6 +29,8 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public void setItemClickListerner(ItemClickListerner itemClickListerner) {
         this.itemClickListerner = itemClickListerner;
+
+
     }
 
     public FoodViewHolder(View itemView) {
@@ -40,6 +43,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View view) {
+        itemClickListerner.onClick(view,getAdapterPosition(),false);
 
     }
 }

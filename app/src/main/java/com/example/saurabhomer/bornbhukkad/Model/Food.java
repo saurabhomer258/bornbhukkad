@@ -65,7 +65,6 @@ public class Food {
         Image = image;
         Description = description;
         Price = price;
-
         Discount = discount;
         MenuId = menuId;
     }

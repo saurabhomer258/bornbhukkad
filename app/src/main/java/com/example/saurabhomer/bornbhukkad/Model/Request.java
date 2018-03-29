@@ -11,8 +11,8 @@ public class Request
     private String phone;
     private String name;
     private String address;
-    private String Total;
-    private List<Order> foods; // liist of food's order
+    private String total;
+    private List<Order> foods; // list of food's order
     private String status;
     public Request() {
 
@@ -26,8 +26,7 @@ public class Request
         this.phone = phone;
         this.name = name;
         this.address = address;
-        Total = total;
-
+        this.total = total;
         this.foods = foods;
         this.status="0";
 
@@ -58,11 +57,11 @@ public class Request
     }
 
     public String getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(String total) {
-        Total = total;
+        this.total = total;
     }
 
     public List<Order> getFoods() {

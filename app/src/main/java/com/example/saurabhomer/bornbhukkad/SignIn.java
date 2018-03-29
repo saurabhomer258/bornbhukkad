@@ -1,5 +1,4 @@
 package com.example.saurabhomer.bornbhukkad;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
 public class SignIn extends AppCompatActivity {
 
     EditText edtPhone,edtPassword;
@@ -50,14 +48,13 @@ public class SignIn extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Check if User not Exist in the database
                         if(dataSnapshot.child(edtPhone.getText().toString()).exists()) {
-
-
                             //Get User Information
-
                             mDialog.dismiss();
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
 
-                            user.setPhone(edtPhone.getText().toString());  //set Phone
+                            //set Phone
+
+                            user.setPhone(edtPhone.getText().toString());
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 Intent homeIntent = new Intent(SignIn.this,Home.class);
                                 Common.currentUser = user;
