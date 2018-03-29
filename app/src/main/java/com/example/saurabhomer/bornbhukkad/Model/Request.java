@@ -13,9 +13,13 @@ public class Request
     private String address;
     private String Total;
     private List<Order> foods; // liist of food's order
-
+    private String status;
     public Request() {
 
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public Request(String phone, String name, String address, String total, List<Order> foods) {
@@ -23,7 +27,10 @@ public class Request
         this.name = name;
         this.address = address;
         Total = total;
+
         this.foods = foods;
+        this.status="0";
+
     }
 
     public String getPhone() {
