@@ -1,5 +1,6 @@
 package com.example.saurabhomer.bornbhukkad;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,7 +69,11 @@ public class FoodList extends AppCompatActivity {
                 viewHolder.setItemClickListerner(new ItemClickListerner() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(FoodList.this, ""+local.getName(), Toast.LENGTH_SHORT).show();
+                        //Start New Activity
+                        Intent foodDetail =new Intent(FoodList.this,FoodDetail.class);
+                        foodDetail.putExtra("foodId",adapter.getRef(position).getKey());  //send Food id to new activity
+                        startActivity(foodDetail);
+
                     }
                 });
             }
