@@ -52,8 +52,12 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                    Intent cartIntent =new Intent(Home.this,Cart.class);
+                    startActivity(cartIntent);
+
+
             }
         });
 
@@ -69,7 +73,7 @@ public class Home extends AppCompatActivity
         //set Name for user
         View headerView = navigationView.getHeaderView(0);
         txtFullName=(TextView) headerView.findViewById(R.id.txtFullName);
-        txtFullName.setText(Common.CurrentUser.getName());
+        txtFullName.setText(Common.currentUser.getName());
         //Load menu
             recyler_menu = (RecyclerView) findViewById(R.id.recycler_menu);
             recyler_menu.setHasFixedSize(true);

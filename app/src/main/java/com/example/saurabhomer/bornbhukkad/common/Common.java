@@ -7,6 +7,6 @@ import com.example.saurabhomer.bornbhukkad.Model.User;
  */
 
 public class Common  {
-    public  static User CurrentUser;
+    public  static User currentUser;
 
 }

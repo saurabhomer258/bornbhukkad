@@ -34,7 +34,7 @@ public class FoodList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
-
+        Toast.makeText(FoodList.this, "ok", Toast.LENGTH_SHORT).show();
         //Firebase
         database = FirebaseDatabase.getInstance();
         foodList =database.getReference("Food");
@@ -66,10 +66,12 @@ public class FoodList extends AppCompatActivity {
                 Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
 
                 final Food local = model;
+
                 viewHolder.setItemClickListerner(new ItemClickListerner() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Start New Activity
+
                         Intent foodDetail =new Intent(FoodList.this,FoodDetail.class);
                         foodDetail.putExtra("foodId",adapter.getRef(position).getKey());  //send Food id to new activity
                         startActivity(foodDetail);
