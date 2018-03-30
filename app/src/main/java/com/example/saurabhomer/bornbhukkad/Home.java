@@ -28,8 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference category;
     TextView txtFullName;
@@ -79,7 +78,14 @@ public class Home extends AppCompatActivity
             recyler_menu.setHasFixedSize(true);
             layoutManager= new LinearLayoutManager(this);
             recyler_menu.setLayoutManager(layoutManager);
-            loadMenu();
+
+            if(!Common.isConnectedToInterner(this))
+                loadMenu();
+            else
+            {
+                Toast.makeText(this, "Please Check Your Connection!!!!", Toast.LENGTH_SHORT).show();
+                return ;
+            }
 
     }
 

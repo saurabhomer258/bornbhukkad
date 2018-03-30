@@ -39,47 +39,54 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final ProgressDialog mDialog=new ProgressDialog(SignIn.this);
-                mDialog.setMessage("Please waiting");
-                mDialog.show();
+                if (Common.isConnectedToInterner(getBaseContext())) {
 
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Check if User not Exist in the database
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists()) {
-                            //Get User Information
-                            mDialog.dismiss();
-                            User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
+                    final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+                    mDialog.setMessage("Please waiting");
+                    mDialog.show();
 
-                            //set Phone
+                    table_user.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            //Check if User not Exist in the database
+                            if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                                //Get User Information
+                                mDialog.dismiss();
+                                User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
 
-                            user.setPhone(edtPhone.getText().toString());
-                            if (user.getPassword().equals(edtPassword.getText().toString())) {
-                                Intent homeIntent = new Intent(SignIn.this,Home.class);
-                                Common.currentUser = user;
-                                startActivity(homeIntent);
-                                finish();
+                                //set Phone
+
+                                user.setPhone(edtPhone.getText().toString());
+                                if (user.getPassword().equals(edtPassword.getText().toString())) {
+                                    Intent homeIntent = new Intent(SignIn.this, Home.class);
+                                    Common.currentUser = user;
+                                    startActivity(homeIntent);
+                                    finish();
 
 
-                                Toast.makeText(SignIn.this, "SignIn Sucessfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignIn.this, "SignIn Sucessfully", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(SignIn.this, "SignIn Failed", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-                                Toast.makeText(SignIn.this, "SignIn Failed", Toast.LENGTH_SHORT).show();
+                                mDialog.dismiss();
+                                Toast.makeText(SignIn.this, "User not exist", Toast.LENGTH_SHORT).show();
                             }
                         }
-                        else
-                        {
-                            mDialog.dismiss();
-                            Toast.makeText(SignIn.this, "User not exist", Toast.LENGTH_SHORT).show();
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    Toast.makeText(SignIn.this, "Please Check Your Connection!!!!", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
             }
+
         });
 
     }

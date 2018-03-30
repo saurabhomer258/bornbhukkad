@@ -13,6 +13,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.saurabhomer.bornbhukkad.Database.Database;
 import com.example.saurabhomer.bornbhukkad.Model.Food;
 import com.example.saurabhomer.bornbhukkad.Model.Order;
+import com.example.saurabhomer.bornbhukkad.common.Common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,7 +69,13 @@ public class FoodDetail extends AppCompatActivity {
             foodId= getIntent().getStringExtra("foodId");
         if(!foodId.isEmpty())
         {
-            getDetailFood(foodId);
+            if(Common.isConnectedToInterner(getBaseContext()))
+                getDetailFood(foodId);
+            else
+            {
+                Toast.makeText(FoodDetail.this, "Please Check Your Connection!!!!", Toast.LENGTH_SHORT).show();
+                return ;
+            }
         }
 
 

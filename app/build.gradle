@@ -46,9 +46,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //Add Library
+    compile 'com.github.mancj:MaterialSearchBar:0.7.6'
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
-    implementation 'com.github.mancj:MaterialSearchBar:0.7.6'
+
 
 }
 

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.saurabhomer.bornbhukkad.Interface.ItemClickListerner;
 import com.example.saurabhomer.bornbhukkad.Model.Food;
 import com.example.saurabhomer.bornbhukkad.ViewHolder.FoodViewHolder;
+import com.example.saurabhomer.bornbhukkad.common.Common;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,11 +37,14 @@ public class FoodList extends AppCompatActivity {
     String categoryId="";
 
     FirebaseRecyclerAdapter<Food,FoodViewHolder> adapter;
+
+
     //Search Functionality
 
     FirebaseRecyclerAdapter<Food,FoodViewHolder> searchAdapter;
     List<String> suggestList = new ArrayList<>();
     MaterialSearchBar materialSearchBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +64,13 @@ public class FoodList extends AppCompatActivity {
         if(getIntent()!=null)
             categoryId =getIntent().getStringExtra("CategoryId");
         if(!categoryId.isEmpty() && categoryId !=null){
-
-            loadListFood(categoryId);
+            if(Common.isConnectedToInterner(getBaseContext()))
+                loadListFood(categoryId);
+            else
+            {
+                Toast.makeText(FoodList.this, "Please Check Your Connection!!!!", Toast.LENGTH_SHORT).show();
+                return ;
+            }
         }
 
         //Search
@@ -80,8 +89,8 @@ public class FoodList extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                //When user type their text , we will change suggest list
-                List<String> suggest = new ArrayList<>();
+                //When user type their text , we will change suggestlist
+                List<String> suggest = new ArrayList<String>();
                 for(String search:suggestList)//Loop in SuggestList
                 {
                     if(search.toLowerCase().contains(materialSearchBar.getText().toLowerCase()));
@@ -125,7 +134,8 @@ public class FoodList extends AppCompatActivity {
                 Food.class,
                 R.layout.food_item,
                 FoodViewHolder.class,
-                foodList.orderByChild("MenuId").equalTo(categoryId)
+                foodList.orderByChild("Name").equalTo(text.toString())//Compare Name
+
         ) {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
@@ -150,7 +160,11 @@ public class FoodList extends AppCompatActivity {
 
         recyclerView.setAdapter(searchAdapter);//Set adapter For Recycler View is Search result
 
+
+
+
     }
+
 
     private void loadSuggest() {
         foodList.orderByChild("MenuId").equalTo(categoryId).addValueEventListener(new ValueEventListener() {
@@ -159,10 +173,9 @@ public class FoodList extends AppCompatActivity {
                 for(DataSnapshot postSnapshot:dataSnapshot.getChildren())
                 {
                     Food item = postSnapshot.getValue(Food.class);
-                    suggestList.add(item.getName());
+                    suggestList.add(item.getName());//Add name of food to suggest list
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
