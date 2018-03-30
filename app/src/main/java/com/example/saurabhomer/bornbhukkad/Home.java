@@ -79,7 +79,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             layoutManager= new LinearLayoutManager(this);
             recyler_menu.setLayoutManager(layoutManager);
 
-            if(!Common.isConnectedToInterner(this))
+            if(Common.isConnectedToInterner(this))
                 loadMenu();
             else
             {
@@ -129,6 +129,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == R.id.refresh)
+            loadMenu();
 
         return super.onOptionsItemSelected(item);
     }
