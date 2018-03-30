@@ -65,7 +65,6 @@ public class Cart extends AppCompatActivity {
                 else
                     Toast.makeText(Cart.this, "Your Cart is Empty!!!", Toast.LENGTH_SHORT).show();
 
-
             }
         });
         loadListFood();

@@ -16,17 +16,16 @@ import java.util.List;
  */
 
 public class Database extends SQLiteAssetHelper {
-    private static final  String DB_NAME="EatitDb.db";
+    private static final  String DB_NAME="EatitDB.db";
     private  static final int DB_VER=1;
     public Database(Context context) {
         super(context, DB_NAME, null,DB_VER);
-
     }
     public List<Order> getcarts()
     {
         SQLiteDatabase db =getReadableDatabase();
         SQLiteQueryBuilder qb= new SQLiteQueryBuilder();
-        String[] sqlSelect = {"ProductName","ProductId","Quantity","Price","Discount"};
+        String[] sqlSelect = {"ID","ProductName","Quality","Price","Discount"};
         String sqlTable = "OrderDetail";
         qb.setTables(sqlTable);
         Cursor c =qb.query(db,sqlSelect,null,null,null,null,null);
@@ -40,7 +39,7 @@ public class Database extends SQLiteAssetHelper {
                         c.getString(c.getColumnIndex("Quantity")),
                         c.getString(c.getColumnIndex("Price")),
                         c.getString(c.getColumnIndex("Discount"))
-                        ));
+                ));
             } while (c.moveToNext());
         }
         return  result;
@@ -49,7 +48,7 @@ public class Database extends SQLiteAssetHelper {
     {
         SQLiteDatabase db =getReadableDatabase();
         String query =String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
-        order.getProductId(),order.getProductName(),order.getQuality(),order.getPrice(),order.getDiscount());
+                order.getProductId(),order.getProductName(),order.getQuality(),order.getPrice(),order.getDiscount());
         db.execSQL(query);
 
     }
