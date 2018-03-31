@@ -37,7 +37,7 @@ public class FoodDetail extends AppCompatActivity {
         setContentView(R.layout.activity_food_detail);
         // firebase
         database=FirebaseDatabase.getInstance();
-        foods=database.getReference("Foods");
+        foods=database.getReference("Food");
         //init view
         numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
         btnCart = (FloatingActionButton) findViewById(R.id.btncart);
@@ -66,7 +66,8 @@ public class FoodDetail extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
         //get food id from intent
         if(getIntent()!=null)
-            foodId= getIntent().getStringExtra("foodId");
+            foodId= getIntent().getStringExtra("FoodId");
+       
         if(!foodId.isEmpty())
         {
             if(Common.isConnectedToInterner(getBaseContext()))
@@ -86,12 +87,13 @@ public class FoodDetail extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                  currentFood= dataSnapshot.getValue(Food.class);
+                Toast.makeText(FoodDetail.this, ""+currentFood, Toast.LENGTH_SHORT).show();
                  //set imag
-//                Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
-//                collapsingToolbarLayout.setTitle(currentFood.getName());
-//                food_price.setText(currentFood.getPrice());
-//                food_name.setText(currentFood.getName());
-//                food_description.setText(currentFood.getDescription());
+                Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
+                collapsingToolbarLayout.setTitle(currentFood.getName());
+                food_price.setText(currentFood.getPrice());
+                food_name.setText(currentFood.getName());
+                food_description.setText(currentFood.getDescription());
 
             }
 

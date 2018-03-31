@@ -34,9 +34,9 @@ public class Database extends SQLiteAssetHelper {
         if(c.moveToFirst())
         {
             do {
-                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
+                result.add(new Order(c.getString(c.getColumnIndex("ID")),
                         c.getString(c.getColumnIndex("ProductName")),
-                        c.getString(c.getColumnIndex("Quantity")),
+                        c.getString(c.getColumnIndex("Quality")),
                         c.getString(c.getColumnIndex("Price")),
                         c.getString(c.getColumnIndex("Discount"))
                 ));
@@ -47,8 +47,8 @@ public class Database extends SQLiteAssetHelper {
     public void addToCard(Order order)
     {
         SQLiteDatabase db =getReadableDatabase();
-        String query =String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
-                order.getProductId(),order.getProductName(),order.getQuality(),order.getPrice(),order.getDiscount());
+        String query =String.format("INSERT INTO OrderDetail(ID,ProductName,Quality,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+                order.getID(),order.getProductName(),order.getQuality(),order.getPrice(),order.getDiscount());
         db.execSQL(query);
 
     }

@@ -5,7 +5,8 @@ package com.example.saurabhomer.bornbhukkad.Model;
  */
 
 public class Order {
-    private String ProductId;
+
+    private String ID;
     private String ProductName;
     private String Quality;
     private String Price;
@@ -16,20 +17,20 @@ public class Order {
 
     }
 
-    public Order(String productId, String productName, String quality, String price, String discount) {
-        ProductId = productId;
+    public Order(String ID, String productName, String quality, String price, String discount) {
+        this.ID = ID;
         ProductName = productName;
         Quality = quality;
         Price = price;
         Discount = discount;
     }
 
-    public String getProductId() {
-        return ProductId;
+    public String getID() {
+        return ID;
     }
 
-    public void setProductId(String productId) {
-        ProductId = productId;
+    public void setID(String ID) {
+        ID = ID;
     }
 
     public String getProductName() {

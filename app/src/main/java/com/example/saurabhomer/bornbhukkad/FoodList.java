@@ -202,7 +202,7 @@ public class FoodList extends AppCompatActivity {
                         //Start New Activity
 
                         Intent foodDetail =new Intent(FoodList.this,FoodDetail.class);
-                        foodDetail.putExtra("foodId",adapter.getRef(position).getKey());  //send Food id to new activity
+                        foodDetail.putExtra("FoodId",adapter.getRef(position).getKey());  //send Food id to new activity
                         startActivity(foodDetail);
 
                     }
