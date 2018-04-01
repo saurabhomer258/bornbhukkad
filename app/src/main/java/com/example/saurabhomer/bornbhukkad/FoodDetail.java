@@ -1,5 +1,6 @@
 package com.example.saurabhomer.bornbhukkad;
 
+import android.database.Cursor;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.saurabhomer.bornbhukkad.Database.CreateDB;
 import com.example.saurabhomer.bornbhukkad.Database.Database;
 import com.example.saurabhomer.bornbhukkad.Model.Food;
 import com.example.saurabhomer.bornbhukkad.Model.Order;
@@ -20,6 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.text.NumberFormat;
+import java.util.List;
 
 public class FoodDetail extends AppCompatActivity {
     TextView food_name,food_price,food_description;
@@ -41,17 +46,29 @@ public class FoodDetail extends AppCompatActivity {
         //init view
         numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
         btnCart = (FloatingActionButton) findViewById(R.id.btncart);
+
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Database(getBaseContext()).addToCard(new Order(
-                        foodId,
-                        currentFood.getName(),
-                        numberButton.getNumber(),
-                        currentFood.getPrice(),
-                        currentFood.getDiscount()
+                CreateDB db =new CreateDB(FoodDetail.this);
+                Database database=new Database(FoodDetail.this);
+                database.createTable(db);
+                Boolean status=db.insertData(foodId,currentFood.getName(), numberButton.getNumber(),currentFood.getPrice(),currentFood.getDiscount());
+                Toast.makeText(FoodDetail.this, ""+status, Toast.LENGTH_SHORT).show();
+//                List<Order> li= db.getCarts();
+  //              Toast.makeText(FoodDetail.this, ""+li.get(0).toString(), Toast.LENGTH_SHORT).show();
+                // Show all data
 
-                ));
+
+                //  Toast.makeText(FoodDetail.this, ""+foodId+""+currentFood.getName()+"  "+numberButton.getNumber()+"  "+ currentFood.getPrice()  +"  "+currentFood.getDiscount(), Toast.LENGTH_SHORT).show();
+//                database.addToCard(new Order(
+//                        foodId,
+//                        currentFood.getName(),
+//                        numberButton.getNumber(),
+//                        currentFood.getPrice(),
+//                        currentFood.getDiscount()
+//
+//                ));
 
                 Toast.makeText(FoodDetail.this, "Added to Card", Toast.LENGTH_SHORT).show();
             }

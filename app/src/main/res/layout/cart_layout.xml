@@ -36,7 +36,7 @@
                 android:gravity="center_vertical|start"
                 android:layout_width="wrap_content"
                 android:textStyle="italic"
-                android:text="100,00"
+                android:text="100,000"
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"/>
             

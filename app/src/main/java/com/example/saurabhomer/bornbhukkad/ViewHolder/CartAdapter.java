@@ -75,11 +75,11 @@ public class CartAdapter extends  RecyclerView.Adapter<CartViewHolder>
 
     @Override
     public void onBindViewHolder(CartViewHolder holder, int position) {
-        TextDrawable drawable = TextDrawable.builder().buildRound(""+ listData.get(position).getQuality(), Color.RED);
+        TextDrawable drawable = TextDrawable.builder().buildRound(""+ listData.get(position).getQuantity(), Color.RED);
         holder.img_cart_count.setImageDrawable(drawable);
         Locale locale =new Locale("en","US");
         NumberFormat fmt= NumberFormat.getCurrencyInstance(locale);
-        int price =(Integer.parseInt(listData.get(position).getPrice()))*(Integer.parseInt(listData.get(position).getQuality()));
+        int price =(Integer.parseInt(listData.get(position).getPrice()))*(Integer.parseInt(listData.get(position).getQuantity()));
         holder.txt_price.setText(fmt.format(price));
         holder.txt_cart_name.setText(listData.get(position).getProductName());
 

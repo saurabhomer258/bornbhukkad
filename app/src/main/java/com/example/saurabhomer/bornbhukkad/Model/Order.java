@@ -6,31 +6,19 @@ package com.example.saurabhomer.bornbhukkad.Model;
 
 public class Order {
 
-    private String ID;
+    private String ProductId;
     private String ProductName;
-    private String Quality;
+    private String Quantity;
     private String Price;
     private String Discount;
-    public  Order()
-    {
 
 
+    public String getProductId() {
+        return ProductId;
     }
 
-    public Order(String ID, String productName, String quality, String price, String discount) {
-        this.ID = ID;
-        ProductName = productName;
-        Quality = quality;
-        Price = price;
-        Discount = discount;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        ID = ID;
+    public void setProductId(String productId) {
+        ProductId = productId;
     }
 
     public String getProductName() {
@@ -41,12 +29,20 @@ public class Order {
         ProductName = productName;
     }
 
-    public String getQuality() {
-        return Quality;
+    public Order(String productId, String productName, String quantity, String price, String discount) {
+        ProductId = productId;
+        ProductName = productName;
+        Quantity = quantity;
+        Price = price;
+        Discount = discount;
     }
 
-    public void setQuality(String quality) {
-        Quality = quality;
+    public String getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        Quantity = quantity;
     }
 
     public String getPrice() {
@@ -64,4 +60,12 @@ public class Order {
     public void setDiscount(String discount) {
         Discount = discount;
     }
+
+    public Order() {
+
+
+    }
+
+
+
 }

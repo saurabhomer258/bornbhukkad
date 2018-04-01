@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.saurabhomer.bornbhukkad.Database.CreateDB;
 import com.example.saurabhomer.bornbhukkad.Database.Database;
 import com.example.saurabhomer.bornbhukkad.Model.Order;
 import com.example.saurabhomer.bornbhukkad.Model.Request;
@@ -111,14 +112,15 @@ public class Cart extends AppCompatActivity {
     }
 
     private void loadListFood() {
-        cart =new Database(this).getcarts();
+        //cart =new Database(this).getCarts();
+        cart =new CreateDB(this).getCarts();
         adapter =new CartAdapter(cart,this);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
         //calculate total
         int total=0;
         for(Order order:cart)
-            total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuality()));
+            total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
         Locale locale =new Locale("en","US");
         NumberFormat fmt= NumberFormat.getCurrencyInstance(locale);
         txtTotalPrice.setText(fmt.format(total));
