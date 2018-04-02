@@ -18,17 +18,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import info.hoang8f.widget.FButton;
+
 public class SignIn extends AppCompatActivity {
 
     EditText edtPhone,edtPassword;
-    Button btnSignIn;
+    FButton btnSignIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        edtPassword =(MaterialEditText)findViewById(R.id.edtPassword);
-        edtPhone =(MaterialEditText)findViewById(R.id.edtPhone);
-        btnSignIn =(Button) findViewById(R.id.btnSignIn);
+        edtPassword =(EditText)findViewById(R.id.edtPassword);
+        edtPhone =(EditText)findViewById(R.id.edtPhone);
+        btnSignIn =(FButton) findViewById(R.id.btnSignIn);
 
 
         //Init Firebase
