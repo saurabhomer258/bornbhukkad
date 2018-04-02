@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
-
-
+    static int start=0;
     Button btnSignUp,btnSignIn;
     TextView txtSlogan;
     @Override
@@ -19,7 +18,11 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        if(start==0)
+        {
+                Intent splash=new Intent(this,Splash.class);
+                startActivity(splash);
+        }
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         txtSlogan = (TextView) findViewById(R.id.txtSlogan);

@@ -29,6 +29,8 @@ public class CreateDB extends SQLiteOpenHelper {
         super(context,"student2.db",null,1);
     }
 
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
        // db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,ProductId TEXT,ProductName TEXT,Quantity INTEGER,Price INTEGER,Discount INTEGER)");
@@ -82,5 +84,11 @@ public class CreateDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
         return res;
+    }
+    public void cleanCart()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+
     }
 }

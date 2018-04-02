@@ -33,10 +33,8 @@ import info.hoang8f.widget.FButton;
 public class Cart extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-
     FirebaseDatabase database;
     DatabaseReference requests;
-
     TextView txtTotalPrice;
     FButton btnPlace;
     CartAdapter adapter;
@@ -45,7 +43,6 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
         //firebase
         database =FirebaseDatabase.getInstance();
         requests=database.getReference("Requests");
@@ -97,7 +94,10 @@ public class Cart extends AppCompatActivity {
                 //we will using system.CurrentMill to key
                 requests.child(String.valueOf(System.currentTimeMillis())).setValue(request);
                 // delete  Cart
-                new Database(getBaseContext()).cleanCart();
+                //new Database(getBaseContext()).cleanCart();
+                CreateDB db =new CreateDB(getApplicationContext());
+                db.cleanCart();
+
                 Toast.makeText(Cart.this, "Thank you , order Place", Toast.LENGTH_SHORT).show();
                 finish();
             }
