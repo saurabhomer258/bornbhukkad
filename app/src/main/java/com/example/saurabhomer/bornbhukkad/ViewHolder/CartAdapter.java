@@ -62,7 +62,7 @@ public class CartAdapter extends  RecyclerView.Adapter<CartViewHolder>
     private Context context;
 
     public CartAdapter(List<Order> cart,Context context) {
-        this.listData =listData;
+        this.listData =cart;
         this.context =context;
     }
 
