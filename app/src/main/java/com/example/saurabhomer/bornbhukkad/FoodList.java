@@ -181,9 +181,7 @@ public class FoodList extends AppCompatActivity {
 
             }
         });
-
     }
-
     private void loadListFood(String categoryId) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
                 R.layout.food_item,

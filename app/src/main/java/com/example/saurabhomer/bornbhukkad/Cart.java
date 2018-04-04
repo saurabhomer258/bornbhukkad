@@ -136,10 +136,11 @@ public class Cart extends AppCompatActivity {
 
     private void deleteCart(int position) {
         //We will remove item at List<Order>by position
-        cart.remove(position);
+        Toast.makeText(this, ""+cart.get(position).getProductName().toString(), Toast.LENGTH_SHORT).show();
 
+        cart.remove(position);
         //After that , we will delete all data  from  SQLite
-        new Database(this).cleanCart();
+       // new CreateDB(this).cleanCart();
 
         //And final , we will update new data from List<Order> to SQlite
         for(Order item:cart)

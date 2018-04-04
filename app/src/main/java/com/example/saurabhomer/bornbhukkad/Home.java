@@ -156,6 +156,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(signIn);
         }
+        
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

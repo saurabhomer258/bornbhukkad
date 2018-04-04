@@ -34,15 +34,17 @@ public class CreateDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
        // db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,ProductId TEXT,ProductName TEXT,Quantity INTEGER,Price INTEGER,Discount INTEGER)");
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,ProductId TEXT,Quantity TEXT,Price TEXT,Discount TEXT)");
+        db.execSQL("create table  if not exists " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,ProductId TEXT,Quantity TEXT,Price TEXT,Discount TEXT)");
     }
-    public boolean insertData(String col1,String col2,String col3,String clo4,String col5) {
+    public boolean insertData(String col1,String col2,String col3,String col4,String col5) {
         SQLiteDatabase db = this.getWritableDatabase();
+        //db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,ProductId TEXT,Quantity TEXT,Price TEXT,Discount TEXT)");
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1,"2");
-        contentValues.put(COL_2,"3");
-        contentValues.put(COL_3,"2000");
-        contentValues.put(COL_4,"100");
+        contentValues.put(COL_1,col2);
+        contentValues.put(COL_2,col3);
+        contentValues.put(COL_3,col4);
+        contentValues.put(COL_4,col5);
+
         long result = db.insert(TABLE_NAME,null ,contentValues);
         if(result == -1)
             return false;
@@ -88,7 +90,8 @@ public class CreateDB extends SQLiteOpenHelper {
     public void cleanCart()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        db.execSQL("delete from "+ TABLE_NAME);
+       // db.delete(TABLE_NAME, "ID = ?",new String[] {id});
 
     }
 }

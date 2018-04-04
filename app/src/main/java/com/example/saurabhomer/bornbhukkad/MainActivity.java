@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
         {
                 Intent splash=new Intent(this,Splash.class);
                 startActivity(splash);
+                finish();
         }
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);

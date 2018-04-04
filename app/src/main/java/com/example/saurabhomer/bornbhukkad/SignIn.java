@@ -65,8 +65,6 @@ public class SignIn extends AppCompatActivity {
                                     Common.currentUser = user;
                                     startActivity(homeIntent);
                                     finish();
-
-
                                     Toast.makeText(SignIn.this, "SignIn Sucessfully", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(SignIn.this, "SignIn Failed", Toast.LENGTH_SHORT).show();
